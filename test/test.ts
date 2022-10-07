@@ -45,5 +45,8 @@ test('Must be equal', function (t) {
   t.equal(num2fraction(99998 / 99999), '99998/99999')
   t.notEqual(num2fraction(99998 / 99999.0001), '99998/99999')
   t.notEqual(num2fraction(99998.0001 / 99999), '99998/99999')
+  t.throws(() => num2fraction(Number.POSITIVE_INFINITY))
+  t.throws(() => num2fraction(Number.NEGATIVE_INFINITY))
+  t.throws(() => num2fraction(Number.NaN))
   t.end()
 })
