@@ -34,6 +34,15 @@ export default function num2fraction(value: number | string) {
     value = Number.parseFloat(value)
   }
 
+  const invalid: number[] = [
+    Number.POSITIVE_INFINITY,
+    Number.NEGATIVE_INFINITY,
+    Number.NaN,
+  ]
+  if (invalid.includes(value)) {
+    throw new Error(`Invalid number: ${value}`)
+  }
+
   const precision = findPrecision(value) // 精确度
   const number = value * precision
   const gcd = abs(greatestCommonDivisor(number, precision))
